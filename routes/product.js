@@ -7,7 +7,7 @@ app.use(express.json())
 let productControl = require("../controllers/productControl")
 
 let authorization = require("../middlewares/authorization");
-let uploadImage = require("../middlewares/uploadImage");
+let uploadImage2 = require("../middlewares/uploadImage2");
 
 
 //end point GET untuk menampilkan data pelanggaran
@@ -16,7 +16,7 @@ app.get("/", [authorization.authorization], productControl.getProduct)
 app.post("/find", [authorization.authorization], productControl.findProduct)
 
 //end point POST untuk menambah data pelanggaran
-app.post("/", [authorization.authorization, uploadImage.upload.single(`image_produk`)],productControl.addProduct)
+app.post("/", [authorization.authorization, uploadImage2.upload.single(`image_produk`)],productControl.addProduct)
 
 //end point PUT untuk mengedit data pelanggaran
 app.put("/:id_product",[authorization.authorization], productControl.editProduct)

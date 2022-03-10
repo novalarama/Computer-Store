@@ -1,4 +1,4 @@
-let modelCustomer = require("../models/index").modelCustomer
+let modelCustomer = require("../models/index").customer
 
 const md5 = require("md5")
 let jwt = require(`jsonwebtoken`)
@@ -61,11 +61,11 @@ exports.addCustomer = (request,response) => {
         phone_customer: request.body.phone_customer,
         alamat_customer: request.body.alamat_customer,
         image_customer: request.file.filename,
-        username: request.file.username,
+        username: request.body.username,
         password: md5(request.body.password)
 
     }
-    modelSiswa.create(newCustomer)
+    modelCustomer.create(newCustomer)
     .then(result => {
         return response.json({
             message : `Data Customer has been inserted`
@@ -84,7 +84,7 @@ exports.editCustomer = async(request,response) => {
         nama_customer: request.body.nama_customer,
         phone_customer: request.body.phone_customer,
         alamat_customer: request.body.alamat_customer,
-        username: request.file.username,
+        username: request.body.username,
         password: md5(request.body.password)
     }
     if (request.file) {

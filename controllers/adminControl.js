@@ -68,6 +68,11 @@ exports.addAdmin = (request, response) => {
 }
 
 exports.editAdmin = (request, response) => {
+    let error = validationResult(request)
+    if(!error.isEmpty()){
+        return response.json(error.array())
+    }
+    
     let idAdmin = request.params.id_admin
     let dataAdmin = {
         nama_admin: request.body.nama_admin,
@@ -89,10 +94,12 @@ exports.editAdmin = (request, response) => {
 }
 
 exports.deleteAdmin = (request, response) => {
-    let idAdmin = request.params.id_admin
+    let params = {
+        id_admin : request.params.id_admin
+    }
 
     // eksekusi 
-    modelAdmin.destroy({where : idAdmin})
+    modelAdmin.destroy({where : params})
     .then(result => {
         return response.json({
             message : `Data Admin has been deleted`

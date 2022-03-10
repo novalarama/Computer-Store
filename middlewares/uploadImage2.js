@@ -5,11 +5,11 @@ const { request } = require("http")
 
 const storage = multer.diskStorage({
     destination: (request, file, callback) => {
-        callback(null, "./image_customer")
+        callback(null, "./image_produk")
         // ini config untuk menentukan folder penyimpanan file yang diupload
     },
     filename: (request, file, callback) => {
-        callback(null, `image_customer-${Date.now()}${path.extname(file.originalname)}`)
+        callback(null, `image_produk-${Date.now()}${path.extname(file.originalname)}`)
         // ini config untuk menentukan nama file yang diupload
 
     } 
